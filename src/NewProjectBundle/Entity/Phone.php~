@@ -1,0 +1,50 @@
+<?php
+
+namespace NewProjectBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Phone
+ *
+ * @ORM\Table(name="phone")
+ * @ORM\Entity(repositoryClass="NewProjectBundle\Repository\PhoneRepository")
+ */
+class Phone
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Upuser", inversedBy="phones")
+     * @ORM\JoinColumn(name="upuserId", referencedColumnName="id")
+     */
+    private $upuser;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="number", type="string")
+     */
+    private $number;
+
+ /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string")
+     */
+    private $type;
+
+
+
+
+    
+}

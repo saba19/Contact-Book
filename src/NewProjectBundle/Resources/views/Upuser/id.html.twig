@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+{% block title %}Address book{% endblock %}
+{% block content %}
+<br><br>
+<h2>Personal Information</h2><br>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h4 class="card-title"> {{ user.name }} {{ user.surname }} </h4>
+        <p class="card-text">  {{ user.description }} </p>
+    </div>
+    <table>
+        <tr>
+            <td><b>Address: </b></td>
+            <td class="addressPresentation">
+        {% if adress %}
+        <b>City: </b>{{ adress.city }}<br>
+        <b>Street: </b>{{ adress.street }}<br>
+        <b>House: </b>{{ adress.house }}<br>
+        <b>Flat: </b>{{ adress.flat }}
+    {% else %}
+        none
+    {% endif %}
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+    <b>Telephone: </b>  <br>
+            </td>
+            <td>
+                <table>
+            {% for phone in phoneAll %}
+                <tr>
+                    <td class="phonePresentation form-group">
+                        <b>Number: </b>{{ phone.number }}<br>
+                        <b>Type: </b>{{ phone.type }}<br>
+                    </td>
+                    <td> <a href="{{ path('newproject_upuser_deletephone', {'phoneId': phone.id, 'id': user.id}) }}" class="btn btn-outline-danger phoneDelBtns">Delete</a></td>
+                </tr>
+
+            {% else %}
+                <span class="phonePresentation">none</span>
+            {% endfor %}
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table>
+    <tr>
+        <td>
+   <b>Email: </b>
+        </td>
+        <td>
+            <table>
+            {% for email in emailAll %}
+                <tr>
+                    <td class="phonePresentation form-group">
+                        <b>Number: </b>{{ email.email }}<br>
+                        <b>Type: </b>{{ email.type }}<br><hr>
+
+                    </td>
+                    <td><a href="{{ path('newproject_upuser_deleteemail', {'emailId': email.id, 'id': user.id}) }}" class="btn btn-outline-danger phoneDelBtns">Delete</a> </td>
+                </tr>
+            {% else %}
+                <span class="phonePresentation">none</span>
+            {% endfor %}
+            </table>
+        </td>
+    </tr>
+    </table>
+</div>
+    <a class="btn btn-outline-primary" href="{{ path('newproject_upuser_addadress', {'id': user.id}) }}">Add/Edit Adress</a>
+    <a class="btn btn-outline-primary" href="{{ path('newproject_upuser_addphone', {'id': user.id}) }}">Add Phone</a>
+    <a class="btn btn-outline-primary" href="{{ path('newproject_upuser_addemail', {'id': user.id}) }}">Add Email</a>
+{% endblock %}

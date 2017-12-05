@@ -1,0 +1,80 @@
+<?php
+
+namespace NewProjectBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Adress
+ *
+ * @ORM\Table(name="adress")
+ * @ORM\Entity(repositoryClass="NewProjectBundle\Repository\AdressRepository")
+ */
+class Adress
+{
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="adress")
+     */
+    private $users;
+    public function __construct() {
+        $this->users = new ArrayCollection();
+    }
+
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street", type="string", length=255)
+     */
+    private $street;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="house_number", type="integer")
+     */
+    private $house;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flat_number", type="integer")
+     */
+    private $flat;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+
+}

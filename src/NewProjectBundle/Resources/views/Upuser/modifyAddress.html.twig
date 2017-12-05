@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block title %}Address book{% endblock %}
+{% block content %}
+    <br><br>
+    <div class="card" style="width: 40rem;">
+        <table>
+            <tr>
+                <td>
+                    <h3>Add/Edit Address</h3>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
